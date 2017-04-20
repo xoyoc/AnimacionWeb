@@ -21,12 +21,18 @@
 			animation-direction: reverse;
 		}
 		.cuadro{
+			display: none;
 			animation-name: Entrada;
 	    	animation-duration: 3.5s;
-	    	animation-iteration-count: infinite;
+	    	animation-iteration-count: 3;
 		}
-
-		@keyframes Entrada {
+		.maribel{
+			/*display: none;*/
+			animation-name: Aparecer;
+	    	animation-duration: 3.5s;
+	    	animation-iteration-count: 3;
+		}
+		@keyframes Entrada{
 	      0% {
 	        opacity: 0;
 	        transform: scale(.3) rotate(0deg);
@@ -42,6 +48,21 @@
 	      100% {
 	        opacity: 0;
 	        transform: scale(.3) rotate(0deg);
+	      }
+	    }
+
+		@keyframes Aparecer{
+	      0% {
+	        opacity: 0;
+	      }
+	      30% {
+	        opacity: 1;
+	      }
+	      80% {
+	        opacity: 1;
+	      }
+	      100% {
+	        opacity: 0;
 	      }
 	    }
 
@@ -96,11 +117,11 @@
 	<div class="marco" id="marco">
 		<img src="foto1.jpg" alt="Imagenes" class="fotos">
 	</div>
-	<div class="cuadro">
+	<div class="cuadro" id="cuadro">
 		<img src="foto3.jpg" alt="Imagenes" class="fotos">
  		<div class="text"><h4>Maribel Sandoval</h4></div>
 	</div>
-	<div class="ma">
+	<div class="maribel" id="maribel">
 		<img src="foto4.jpg" alt="Imagenes" class="fotos">
 	</div>
 	<div class="ma">
@@ -112,11 +133,27 @@
 	</div>
 	<script>
 		cont = $marco = document.getElementById('marco');
+		cont = $cuadro = document.getElementById('cuadro');
+		cont = $maribel = document.getElementById('maribel');
 
 		$marco.addEventListener('animationend',(envent)=>{
 			// console.log(envent.animationName);
 			if (envent.animationName === 'animacionEnt') {
-				$marco.style.display = 'none'
+				$cuadro.style.display = 'initial';
+				$marco.style.display = 'none';
+			}
+		});
+		$cuadro.addEventListener('animationend',(envent)=>{
+			// console.log(envent.animationName);
+			if (envent.animationName === 'Entrada') {
+				$maribel.style.display = 'initial';
+				$cuadro.style.display = 'none';
+			}
+		});
+		$maribel.addEventListener('animationend',(envent)=>{
+			// console.log(envent.animationName);
+			if (envent.animationName === 'Aparecer') {
+				$maribel.style.display = 'none';
 			}
 		});
 	</script>
