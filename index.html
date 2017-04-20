@@ -8,34 +8,117 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			flex-direction: column;
+			background: rgba(235,233,249,1);
+			transition: all 500ms ease-in-out;
 		}
 		.marco{
 			width: 90%;
 			height: 90%;
+			animation-name: animacionEnt;
+			animation-duration: 3s;
+			animation-iteration-count: 1;
+			animation-direction: reverse;
+		}
+		.cuadro{
+			animation-name: Entrada;
+	    	animation-duration: 3.5s;
+	    	animation-iteration-count: infinite;
 		}
 
+		@keyframes Entrada {
+	      0% {
+	        opacity: 0;
+	        transform: scale(.3) rotate(0deg);
+	      }
+	      30% {
+	        opacity: 1;
+	        transform: scale(.8) rotate(360deg);
+	      }
+	      80% {
+	        opacity: 1;
+	        transform: scale(.8) rotate(360deg);
+	      }
+	      100% {
+	        opacity: 0;
+	        transform: scale(.3) rotate(0deg);
+	      }
+	    }
+
 		@keyframes animacionEnt{
-		0%{transform: translateY(-3000px);}
-		60%{transform: translateY(25px);}
-		75%{transform: translateY(5px);}
-		100%{transform: translateY(0px);}
+			0% {
+				opacity: 0;
+				transform: translateY(-3000px);
+			}
+			60% {
+				opacity: 1;
+				transform: translateY(25px);
+			}
+			75% {
+				opacity: 1;
+				transform: translateY(5px);
+			}
+			100% {
+				opacity: 0;
+				transform: translateY(0px);
+			}
 		}
 		.fotos{
 			width: 100%;
 		}
+		
+		.div-img .text {
+		  position: relative;
+		  z-index: -1;
+		  display: block;
+		  bottom: 20px;
+		  width: 100%;
+		  text-align: center;
+		  transform: 0px 0px 1;
+		  transform: translate(0px, 0px) scale(1);
+		  transition: all 0s ease 0s;
+		}
+
+		.div-img:hover img {
+		  transform: 0px -30px 0.5;
+		  transform: translate(0px, -30px) scale(0.5);
+		  border-radius: 50%;
+		}
+
+		.div-img:hover .text {
+		  transform: 0px 0px 2;
+		  transform: translate(0px, 0px) scale(2);
+		}
+
 	</style>
 </head>
 <body>
-	<div class="marco">
-		<img src="foto1.jpg" alt="" class="fotos">
-		<img src="foto2.jpg" alt="" class="fotos">
-		<img src="foto3.jpg" alt="" class="fotos">
-		<img src="foto4.jpg" alt="" class="fotos">
-		<img src="foto5.jpg" alt="" class="fotos">
-		<img src="foto6.jpg" alt="" class="fotos">
-		<img src="foto7.jpg" alt="" class="fotos">
-		<img src="foto8.jpg" alt="" class="fotos">
-		<img src="foto9.jpg" alt="" class="fotos">
+	<div class="marco" id="marco">
+		<img src="foto1.jpg" alt="Imagenes" class="fotos">
 	</div>
+	<div class="cuadro">
+		<img src="foto3.jpg" alt="Imagenes" class="fotos">
+ 		<div class="text"><h4>Maribel Sandoval</h4></div>
+	</div>
+	<div class="ma">
+		<img src="foto4.jpg" alt="Imagenes" class="fotos">
+	</div>
+	<div class="ma">
+		<img src="foto5.jpg" alt="Imagenes" class="fotos">
+	</div>
+	<div class="div-img">
+ 		<img src="foto2.jpg" alt="Imagenes" class="fotos">
+ 		<div class="text"><h4>Fue una buena tarde para salir!</h4></div>
+	</div>
+	<script>
+		cont = $marco = document.getElementById('marco');
+
+		$marco.addEventListener('animationend',(envent)=>{
+			// console.log(envent.animationName);
+			if (envent.animationName === 'animacionEnt') {
+				$marco.style.display = 'none'
+			}
+		});
+	</script>
 </body>
 </html>
