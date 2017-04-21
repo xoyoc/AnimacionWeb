@@ -16,7 +16,7 @@
 			animation-name: animacionEnt;
 			animation-duration: 3s;
 			animation-iteration-count: 2;
-			animation-delay: .5s;
+			animation-delay: 1s;
 		}
 		.cuadro{
 			display: none;
@@ -30,6 +30,11 @@
 	    	animation-duration: 3.5s;
 	    	animation-iteration-count: 3;
 		}
+		
+		.textc{
+			display: none;
+		}
+
 		@keyframes Entrada{
 	      0% {
 	        opacity: 0;
@@ -82,6 +87,22 @@
 				transform: translateX(0px);
 			}
 		}
+
+		@keyframes latidos {
+		    from { transform: none; }
+		    50% { transform: scale(1.4); }
+		    to { transform: none; }
+		}
+
+		.corazon {
+			display: inline-block;
+			font-size: 150px;
+			text-shadow: 0 0 10px #222,1px 1px  0 #450505;
+			color: red;
+			animation: latidos .5s infinite;
+			transform-origin: center;
+		}
+
 		.fotos{
 			width: 100%;
 		}
@@ -122,10 +143,15 @@
 	<div class="maribel" id="maribel">
 		<img src="img/Foto4.jpg" alt="Imagenes" class="fotos">
 	</div>
+	<div class="textc" id="textc">
+		<h2>Gracias</h2>
+		<div class="corazon">&#x2665;</div>
+	</div>
 	<script>
 		cont = $marco = document.getElementById('marco');
 		cont = $cuadro = document.getElementById('cuadro');
 		cont = $maribel = document.getElementById('maribel');
+		cont = $textc = document.getElementById('textc');
 
 		$marco.addEventListener('animationend',(envent)=>{
 			// console.log(envent.animationName);
@@ -145,6 +171,7 @@
 			// console.log(envent.animationName);
 			if (envent.animationName === 'Aparecer') {
 				$maribel.style.display = 'none';
+				$textc.style.display = 'initial';
 			}
 		});
 	</script>
